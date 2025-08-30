@@ -1,0 +1,56 @@
+%---------------------------------
+% Ar/Cl2 plasma chemistry
+%---------------------------------
+
+%---------------------------------
+% Species 
+%---------------------------------
+SPECIES
+PRESETSPECIESDATA
+Cl2 = Cl2
+Cl = Cl
+Cl_1m = Cl
+Cl_1p = Cl
+Cl2_1p = Cl2
+Ar = Ar
+Ars = Ar
+Ar_1p = Ar
+END
+
+%---------------------------------
+% Electron impact reactions
+%---------------------------------
+ELECTRONIMPACTREACTIONS
+CROSSSECTIONDATA
+Cl2_siglo_xsecs.txt
+Ar_xsecs.txt
+END
+
+ELECTRONIMPACTREACTIONS
+RATECONSTANT
+e+Cl=>Cl++2e  !   Ionization    14.25  4e-14[m^3/s]*(TE/1[V])^(0.5)*exp(-12[V]/TE)*N_A_const
+e+Cl-=>Cl+2e  !   Ionization    14.25  1e-14[m^3/s]*(TE/1[V])^(0.8)*exp(-5[V]/TE)*N_A_const
+END
+
+%---------------------------------
+% Heavy species reactions
+%---------------------------------
+HEAVYSPECIESREACTIONS
+RATECONSTANT
+Ars+Ars=>Ar++Ar+e	!   5e-10[cm^3/s]*N_A_const
+Cl++Cl-=>2Cl	    !   1e-14[m^3/s]*(TGAS/300[K])^0.5*N_A_const
+Cl2++Cl-=>3Cl	    !   1e-14[m^3/s]*(TGAS/300[K])^0.5*N_A_const
+Cl-+Ar+=>Cl+Ar	    !   1e-14[m^3/s]*(TGAS/300[K])^0.5*N_A_const
+END
+
+%---------------------------------
+% Surface reactions
+%---------------------------------
+SURFACEREACTIONS
+Ar+=>Ar	   !  1     0.07  5.8
+Ars=>Ar	   !  1     0.07  5.8
+Cl=>0.5Cl2 !  0.01  0.0   0.0
+Cl-=>Cl    !  1     0.0   0.0
+Cl2+=>Cl2  !  1     0.07  5.8
+Cl+=>Cl    !  1     0.07  5.8
+END
